@@ -3,7 +3,7 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.mulesoftTraining</groupId>
-	<artifactId>maven_project</artifactId>
+	<artifactId>maven_project-arjun</artifactId>
     <version>1.0.0</version>
     <packaging>mule</packaging>
 	<name>Mule maven_project Application</name>
@@ -14,10 +14,36 @@
 
 		<mule.version>3.8.3</mule.version>
     	<mule.tools.version>1.2</mule.tools.version>
+    	
+    	<uid>arjun52</uid>
+    	<pwd>junk</pwd>
 	</properties>
 
 	<build>
 		<plugins>
+		 	<plugin>
+    <groupId>org.mule.tools.maven</groupId>
+    <artifactId>mule-maven-plugin</artifactId>
+    <version>2.0</version>
+    <configuration>
+        <deploymentType>cloudhub</deploymentType>
+        <muleVersion>${mule.version}</muleVersion>
+        <username>${uid}</username>
+        <password>${pwd}</password>
+	      <workerType>Micro</workerType>
+        <redeploy>true</redeploy>
+        <environment>Sandbox</environment>
+    </configuration>
+    <executions>
+        <execution>
+            <id>deploy</id>
+            <phase>deploy</phase>
+            <goals>
+                <goal>deploy</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
 			<plugin>
 				<groupId>org.mule.tools.maven</groupId>
 				<artifactId>mule-app-maven-plugin</artifactId>
@@ -135,6 +161,17 @@
             <artifactId>mule-module-spring-config</artifactId>
             <version>${mule.version}</version>
             <scope>provided</scope>
+        </dependency>
+    <dependency>
+            <groupId>org.mule.modules</groupId>
+            <artifactId>mule-module-db</artifactId>
+            <version>${mule.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derby</artifactId>
+            <version>10.13.1.1</version>
         </dependency>
     </dependencies>
 
